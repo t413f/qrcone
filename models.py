@@ -21,3 +21,5 @@ class QRcode(ormar.Model):
     content: str = ormar.String(max_length=300)
     file: str = ormar.String(max_length=5000)
     user: Optional[User] = ormar.ForeignKey(User)
+
+
