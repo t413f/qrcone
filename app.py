@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Form, UploadFile, File, Body
+from multipart import MultipartParser
 from database import database, metadata, engine
 from models import QRcode
 from schemas import QRBase, QRIn, QROut
@@ -30,6 +31,6 @@ async def qrgen():
 
 
 @app.post('/qrgen')
-async def qrgen(description: QRIn = Body(...)):
-    print(description.dict())
+async def qrgen(description: str = File(...)):
+    print(description)
     return description
