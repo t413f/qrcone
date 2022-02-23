@@ -24,6 +24,11 @@ async def on_shutdown():
         await database_.disconnect()
 
 
+@app.get('/')
+async def qrgen():
+    return {'message': 'hello'}
+
+
 @app.post('/qrgen')
 async def qrgen(file: UploadFile = File(...), description: QRIn = Form(...)):
     await print(description.dict())
