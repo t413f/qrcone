@@ -31,5 +31,5 @@ async def qrgen():
 
 @app.post('/qrgen')
 async def qrgen(description: QRIn = Body(...)):
-    await print(description.dict())
+    print(description.dict())
     return description
