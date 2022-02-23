@@ -38,5 +38,5 @@ async def qrgen(file: UploadFile = File(...)):
 
 @app.post('/qr')
 async def qrgen(file: str = Body(...)):
-    print(str)
-    return str
+    print(file)
+    return file
