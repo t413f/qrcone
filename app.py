@@ -4,6 +4,7 @@ from database import database, metadata, engine
 from models import QRcode, User
 from schemas import QRBase, QRIn, QROut
 from typing import Optional
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -39,7 +40,12 @@ async def qrgen(file: UploadFile = File(...), desc: QRIn = Depends()):
             # 'content': content}
 
 
+class QRBase(BaseModel):
+    colored: bool = Form(False)
+    content: str = Form("sadmwkemfwkemfwe")
+    file: UploadFile = File(...)
+
 @app.post('/qr')
-async def qrgen(file: str = Form(...)):
-    print(file)
-    return file
+async def qrgen(qr: QRBase = Depends()):
+    print(qr.dict())
+    return {'file': qr.file.filename+"huy"}
