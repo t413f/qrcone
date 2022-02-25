@@ -33,7 +33,7 @@ async def qrgen():
 
 @app.post('/qrgen')
 async def qrgen(file: UploadFile = File(...), colored: Optional[bool] = Form(...), content: Optional[str] = Form(...)):
-    return {'file': file.filename}
+    return {'file': f'{file.filename}+huy'}
             # 'colored': colored,
             # 'content': content}
 
