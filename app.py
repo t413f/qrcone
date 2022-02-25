@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Form, UploadFile, File, Body
 from multipart import MultipartParser
 from database import database, metadata, engine
-from models import QRcode
+from models import QRcode, User
 from schemas import QRBase, QRIn, QROut
 
 app = FastAPI()
@@ -32,8 +32,12 @@ async def qrgen():
 
 @app.post('/qrgen')
 async def qrgen(file: UploadFile = File(...)):
-    print(file.filename)
-    return file.filename
+    return {'file': file.filename,
+            'description': {
+                'colored': False,
+                'content': 'google.com',
+                'fileb64': 'asdmowiegnwegl'
+            }}
 
 
 @app.post('/qr')
